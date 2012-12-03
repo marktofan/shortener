@@ -1,7 +1,12 @@
 Shortner::Application.routes.draw do
   resources :links
 
-  match "/:id" => "links#show"
+  # 301 redirect to /
+  match "/links" => redirect("/")
+
+
+  match "/:id" => "links#show", :via => :get
+  match "/" => "links#create"  ,  :via => :post
 
 
   # The priority is based upon order of creation:
