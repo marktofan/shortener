@@ -11,3 +11,240 @@
  *= require_self
  *= require_tree .
  */
+
+/*RESET*/
+
+html {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/* RESET core*/
+a, b, body, dd, del, dfn, div, dl, dt, em, fieldset, form, h1, h2, h3, h4, h5, h6,
+html, i, iframe, img, ins, label, legend, li, ol, p, q, small, span, strong, u, ul,
+    /*RESET other html 4 tags*/
+abbr, address, blockquote, caption, cite, code, del, dfn, dialog, iframe, ins, kbd, object,
+pre, s, samp, ssamp, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, var, xmpbody,
+    /*RESET HTML 5 not suported tags */
+acronym, applet, basefont, big, center, dir, font, frame, frameset, noframes, strike, tt, u, xmp,
+    /*HTML 5 tags */
+article, aside, audio, canvas, command, datalist, details, embed, figcaption, figure, footer, header,
+hgroup, keygen, mark, meter, nav, output, progress, rp, rt, ruby, section, source, summary, time, video, wbr {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100.01%;
+    font-family: inherit;
+    vertical-align: baseline;
+}
+
+/* Remove possible quote marks (") from <q>, <blockquote>. */
+blockquote:before, blockquote:after, q:before, q:after {
+    content: "";
+    content: none;
+}
+
+blockquote, q {
+    quotes: "" "";
+}
+
+/*TABLE reset*/
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+table, th, td {
+    vertical-align: middle;
+    float: none !important;
+}
+
+/*OTHER resets*/
+abbr[title], dfn[title] {
+    border-bottom: 1px dotted;
+    cursor: help;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    margin: 1em 0;
+    padding: 0;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+:focus {
+    outline: 0;
+}
+
+html, body {
+    height: 100%
+}
+
+formlabel {
+    cursor: pointer;
+}
+
+input, select {
+    vertical-align: middle;
+}
+
+a {
+    color: inherit;
+}
+
+a img {
+    border: 0
+}
+
+del {
+    text-decoration: line-through;
+}
+
+strong, b {
+    font-weight: bold;
+}
+
+small {
+    font-size: 85%;
+}
+
+sub {
+    vertical-align: sub;
+    font-size: smaller;
+}
+
+sup {
+    vertical-align: super;
+    font-size: smaller;
+}
+
+pre {
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    padding: 10px;
+}
+
+pre {
+    margin: 1.5em 0;
+    white-space: pre;
+}
+
+pre, code, tt {
+    font: 1em 'andale mono', 'lucida console', monospace;
+    line-height: 1.5;
+}
+
+textarea {
+    overflow: auto;
+}
+
+/*classes*/
+
+.c:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: "\0020";
+    clear: both;
+    height: 0;
+}
+
+.c {
+    display: inline-block;
+}
+
+/* start commented backslash hack \*/
+* html .c {
+    height: 1%;
+}
+
+.c {
+    display: block;
+}
+
+/* close commented backslash hack */
+.cb {
+    clear: both;
+    height: 0px;
+    overflow: hidden;
+    font-size: 0px;
+    line-height: 0px;
+}
+
+.l {
+    float: left;
+}
+
+.r {
+    float: right;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.relative {
+    position: relative;
+}
+
+.tl {
+    text-align: left;
+}
+
+.tr {
+    text-align: right;
+}
+
+.tc {
+    text-align: center;
+}
+
+.b {
+    font-weight: bold;
+}
+
+.ab:hover {
+    font-weight: bold;
+}
+
+/*SITE*/
+a, a:hover {
+    text-decoration: none;
+}
+
+#site_wrapper {
+    width: 950px;
+    margin: 0 auto;
+    border: 1px solid #eeeeee;
+}
+
+#header {
+    padding: 10px;
+    background-color: #eeeeee;
+}
+
+#logo {
+    margin: 5px 10px auto auto;
+}
+
+#logo a {
+    font-size: 16px;
+    font-weight: bold;
+    color: #191970;
+    border: 2px dotted #cccccc;
+    display: block;
+    padding: 7px 10px;
+}
+#main_wrapper{
+    margin: 15px 10px;
+}
