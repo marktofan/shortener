@@ -1,12 +1,14 @@
 class LinksController < ApplicationController
   # GET /links
   # GET /links.json
+
+  respond_to :html, :json
+
   def index
 
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @links }
-    end
+    @link = Link.new
+
+    respond_with(@links)
   end
 
   # GET /links/1
@@ -17,15 +19,10 @@ class LinksController < ApplicationController
 
       redirect_to @link.url
 
-        #respond_to do |format|
-        #  format.html # show.html.erb
-        #  format.json { render json: @link }
-        #end
-
-        # if no row - print 404, not found
+        # if no row - print 404 template
     rescue ActiveRecord::RecordNotFound => e
 
-      render :text => 'Not Found', :status => '404'
+      render :file => 'public/404', :layout => true, :status => '404'
     end
 
   end
@@ -34,20 +31,19 @@ class LinksController < ApplicationController
   # POST /links
   # POST /links.json
   def create
-    @link = Link.new(params[:link])
 
-    @link.url=params['url']
+    # check first if url exist in database
+    row= Link.find_by_url(params[:url])
 
+    if row == nil
+      @link = Link.new(url: params[:url])
+      @link.save
 
-    respond_to do |format|
-      if @link.save
-        format.html { redirect_to @link, notice: 'Link was successfully created.' }
-        format.json { render json: @link, status: :created, location: @link }
-      else
-        format.html { render action: "index" }
-        format.json { render json: @link.errors, status: :unprocessable_entity }
-      end
+    elsif @link=row
+    end
+
+    respond_with(@link) do |format|
+      format.html { render action: "index" }
     end
   end
-
 end
