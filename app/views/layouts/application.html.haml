@@ -1,0 +1,14 @@
+!!!
+%html
+  %head
+    %title Shortner
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "jquery", "jquery_ujs", "jquery.validate", "jquery.validate.additional-methods", "links"
+    = csrf_meta_tags
+  %body
+    #site_wrapper
+      #header.c
+        #logo.l
+          = link_to "Shortener", "/"
+      #main_wrapper
+        = yield

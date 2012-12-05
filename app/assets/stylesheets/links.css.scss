@@ -12,7 +12,7 @@
     font-size: 14px;
     padding: 7px 0;
   }
-  input[type=text] {
+  input[type=text], input[type=url] {
     border: 1px solid #191970;
     font-size: 12px;
     padding: 5px 8px;
@@ -23,5 +23,23 @@
     border: 1px solid #191970;
     font-size: 12px;
     padding: 5px 8px;
+  }
+}
+
+div.error {
+  color: #cc0000;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 1px;
+}
+
+#succes {
+  margin-top: 15px;
+  font-size: 12px;
+  padding: 10px 5px;
+  background-color: #faf0e6;
+  h3 {
+    color: green;
+    font-weight: bold;
   }
 }
