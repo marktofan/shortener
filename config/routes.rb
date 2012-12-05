@@ -1,11 +1,19 @@
 Shortner::Application.routes.draw do
+  devise_for :admins
+
+  get "admin/list"
+
+  get "admin/edit"
+
+  get "admin/delete"
+
   resources :links
 
   # 301 redirect to /
   match "/links" => redirect("/")
 
 
-  match "/:id" => "links#show", :via => :get
+  match "/:id" => "links#show", :as => :link_show, :via => :get
   match "/" => "links#create"  ,  :via => :post
 
 
