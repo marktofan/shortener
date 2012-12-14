@@ -7,9 +7,7 @@ class UserMailer < ActionMailer::Base
     @user = user
     @url = "http://example.com/sign_in"
 
-
     mail(:to => user.email, :subject => "Welcome to Shortener")
-
   end
 
 

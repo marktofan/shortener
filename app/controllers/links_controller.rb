@@ -1,49 +1,50 @@
 class LinksController < ApplicationController
-  # GET /links
-  # GET /links.json
+  load_and_authorize_resource
+
+  expose(:link)
+  expose(:ransack) {
+    @links.search(params[:q])
+  }
+  expose(:links) {
+    @per_page = params[:per_page] || 10
+    links = ransack.result.paginate(:page => params[:page], :per_page => @per_page.to_i)
+  }
 
   respond_to :html, :json
 
-  def index
+  aa=2
 
-    @link = Link.new
 
-    respond_with(@links)
-  end
-
-  # GET /links/1
-  # GET /links/1.json
+# GET /links/1
+# GET /links/1.json
   def show
-    begin
-      @link = Link.find(params[:id])
-
-      redirect_to @link.url
-
-        # if no row - print 404 template
-    rescue ActiveRecord::RecordNotFound => e
-
-      render :file => 'public/404', :layout => true, :status => '404'
-    end
-
+    redirect_to link.url
   end
 
 
-  # POST /links
-  # POST /links.json
+# POST /links
+# POST /links.json
   def create
 
-    # check first if url exist in database
-    row= Link.find_by_url(params[:url])
+    if user_signed_in?
 
-    if row == nil
-      @link = Link.new(url: params[:url])
-      @link.save
+      # check first if url exist in database
+      row= Link.find_by_url_and_user_id(params[:link][:url], current_user.id)
 
-    elsif @link=row
+      if row == nil
+
+        link.user_id = current_user.id
+        link.save
+      elsif link=row
+      end
+
+    else
+      link.save
     end
 
-    respond_with(@link) do |format|
-      format.html { render action: "index" }
+    respond_with(link) do |format|
+      format.html { render action: "new" }
     end
   end
+
 end

@@ -1,12 +1,29 @@
-#short_it
-  %h2#title2 Paste a link to shorten it
-  - if @link and @link.errors.any?
-    .error
-      - @link.errors.full_messages.each do |msg|
-        %p= msg
-  = simple_form_for @link, :url => '/', :method => :post do |f|
-    = f.input_field :url, :placeholder => 'Long url here...', :name=>'url'
-    = f.button :submit
-  - if @link and @link.id.to_i > 0
-    = render 'new_url'
+= render 'useful_links'
+%h1#title Listing links
 
+= search_form_for ransack, :html => {:id=>'search_link'} do |f|
+  = f.text_field :url_cont, :placeholder => 'Url...'
+  = f.submit
+
+-if flash[:notice]
+  %p.notice
+    = flash[:notice]
+
+-unless links.any?
+  %div.tc
+    You don't have any links.
+-else
+  %table.links
+    %tr
+      %th Id
+      %th Url
+      %th Redirect Url
+      %th Action
+    - links.each do |link|
+      %tr
+        %td.tc= link.id
+        %td= link.url
+        %td= link_to link_show_url(link), link_show_url(link), :target => "_blank", :class=> 'blue'
+        %td= link_to 'Delete', admin_link_url(link.id), method: :delete, data: { confirm: 'Are you sure?' }
+
+  = will_paginate links

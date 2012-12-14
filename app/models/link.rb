@@ -1,6 +1,7 @@
 class Link < ActiveRecord::Base
   include FriendlyId
-  attr_accessible :url, :slug
+  attr_accessible :url, :slug, :user_id
+  belongs_to :user
 
   # make separator to blank for a nice format just in case that we have a duplicate row
   friendly_id do |config|
@@ -25,3 +26,6 @@ class Link < ActiveRecord::Base
     self.slug = hash[0..7]
   end
 end
+
+
+
