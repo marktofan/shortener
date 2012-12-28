@@ -1,26 +1,23 @@
 class LinksController < ApplicationController
   load_and_authorize_resource
 
-  expose(:link)
+  expose(:link) {
+    @link
+  }
   expose(:ransack) {
     @links.search(params[:q])
   }
   expose(:links) {
     @per_page = params[:per_page] || 10
-    links = ransack.result.paginate(:page => params[:page], :per_page => @per_page.to_i)
+    ransack.result.paginate(:page => params[:page], :per_page => @per_page.to_i)
   }
 
   respond_to :html, :json
 
-  aa=2
-
-
-# GET /links/1
-# GET /links/1.json
+# redirect to long url
   def show
     redirect_to link.url
   end
-
 
 # POST /links
 # POST /links.json
@@ -39,7 +36,7 @@ class LinksController < ApplicationController
       end
 
     else
-      link.save
+      @link.save
     end
 
     respond_with(link) do |format|
