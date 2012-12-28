@@ -1,0 +1,30 @@
+= render 'useful_links'
+%h1#title Listing links
+
+= search_form_for ransack, :url=>admin_links_url, :html => {:id=>'search_link'} do |f|
+  = f.text_field :url_cont, :placeholder => 'Url...'
+  = f.submit
+
+-if flash[:notice]
+  %p.notice
+    = flash[:notice]
+
+%table.links
+  %tr
+    %th Id
+    %th Url
+    %th Redirect Url
+    %th Action
+  - links.each do |link|
+    %tr
+      %td.tc= link.id
+      %td= link.url
+      %td= link_to link_show_url(link), link_show_url(link), :target => "_blank", :class=> 'blue'
+      %td= link_to 'Delete', admin_link_url(link.id), method: :delete, data: { confirm: 'Are you sure?' }
+
+%div.c{style:' width: 470px;'}
+  %div.l
+    = will_paginate links
+  %div.r{style:' margin-top: 10px;'}
+    Per page:
+    = select_tag :per_page, options_for_select([2, 5,10,20,50], per_page.to_i), onchange: 'window.location="'+admin_links_url+'?q[url_cont]='+params[:q]['url_cont']+'&per_page="+$(this).val()'

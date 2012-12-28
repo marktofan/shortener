@@ -1,0 +1,48 @@
+!!!
+%html
+  %head
+    %title Welcome to shortener
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    :css
+      body, div, p, #wrapper, #content{
+      font-size: 12px;
+      }
+      a{
+      collor: blue;
+      text-decoration: none;
+      }
+      #wrapper{
+        width: 700px;
+        margin: 0 auto;
+        border: 1px solid #ccc;
+      }
+      #header{
+        padding: 20px 0 10px 10px;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #d1d1d1;
+      }
+      #header a{
+        font-size: 16px;
+        font-weight: bold;
+      }
+      #content{
+        padding: 7px;
+        min-height: 300px;
+      }
+      #footer{
+        padding: 7px;
+        margin-top:10px;
+        border-top: 1px solid #d1d1d1;
+        text-align: right;
+      }
+  %body
+    %div#wrapper
+      %div#header
+        %a{:href => 'http://localhost:3000'}Shortener
+      %div#content
+        = yield
+      %div#footer
+        Contact:
+        %a{:href => 'mailto:contact@aaa.bb'}contact@aaa.bb
+
+

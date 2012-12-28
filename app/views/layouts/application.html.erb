@@ -2,13 +2,23 @@
 <html>
 <head>
   <title>Shortner</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<div id="site_wrapper">
+  <div id="header" class="c">
+    <div id="logo" class="l">
+      <%= link_to "Shortener", "/" %>
+    </div>
+  </div>
+  <div id="main_wrapper">
+    <%= yield %>
+  </div>
+
+</div>
 
 </body>
 </html>

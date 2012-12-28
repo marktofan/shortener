@@ -1,0 +1,23 @@
+.admin_links
+  -if user_signed_in?
+    -if current_user.role? :admin
+      = link_to 'admin', admin_links_url, class: 'blue'
+    - elsif
+      = link_to 'your links', links_url, class: 'blue'
+  -elsif
+    = link_to 'Sign in', new_user_session_url, class: 'blue'
+
+#short_it
+  %h2#title2 Paste a link to shorten it
+  - if link and link.errors.any?
+    .error
+      - link.errors.full_messages.each do |msg|
+        %p
+          = msg
+  = simple_form_for link, :url => '/', :method => :post do |f|
+    = f.input_field :url, :placeholder => 'Long url here...'
+    = f.button :submit
+  - if link and link.id.to_i > 0
+    = render 'new_url'
+
+

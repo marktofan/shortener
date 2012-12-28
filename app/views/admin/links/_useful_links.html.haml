@@ -1,0 +1,6 @@
+.admin_links
+  -if user_signed_in?
+    %span
+      Signed in as: (#{current_user.email}) &nbsp;
+  = link_to 'Sign out', destroy_user_session_path, method: :delete, class: 'blue'
+

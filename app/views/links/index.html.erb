@@ -1,0 +1,7 @@
+<div id="short_it">
+  <h2>Paste a link to shorten it</h2>
+  <%= form_tag("/", :method => "post", :class => "form") do %>
+      <%= text_field_tag(:url) %>
+      <%= submit_tag("Shorten") %>
+  <% end %>
+</div>

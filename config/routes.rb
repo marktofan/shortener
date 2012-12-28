@@ -1,4 +1,18 @@
 Shortner::Application.routes.draw do
+
+
+  devise_for :users
+
+  namespace :admin do
+    resources :links
+  end
+
+  resources :links
+
+  match "/:id" => "links#show", :as => :link_show, :via => :get
+  match "/" => "links#create", :via => :post
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +62,7 @@ Shortner::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'links#new'
 
   # See how all your routes lay out with "rake routes"
 
