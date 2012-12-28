@@ -1,20 +1,16 @@
 Shortner::Application.routes.draw do
-  devise_for :admins
 
-  get "admin/list"
 
-  get "admin/edit"
+  devise_for :users
 
-  get "admin/delete"
+  namespace :admin do
+    resources :links
+  end
 
   resources :links
 
-  # 301 redirect to /
-  match "/links" => redirect("/")
-
-
   match "/:id" => "links#show", :as => :link_show, :via => :get
-  match "/" => "links#create"  ,  :via => :post
+  match "/" => "links#create", :via => :post
 
 
   # The priority is based upon order of creation:
@@ -66,7 +62,7 @@ Shortner::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'links#index'
+  root :to => 'links#new'
 
   # See how all your routes lay out with "rake routes"
 

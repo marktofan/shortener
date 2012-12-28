@@ -29,7 +29,13 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: mysql2
+  encoding: utf8
+  database: shortener
   pool: 5
   timeout: 5000
+  username: petru.ilies
+  password: fnWYVPDNnJUHuwJH
+  host: localhost
+  #socket: /tmp/mysql.sock
+
